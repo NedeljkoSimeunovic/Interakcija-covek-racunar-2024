@@ -5,12 +5,72 @@
         <a routerLink="Home">Home</a>
       </li>
       <li class="breadcrumb-item">
-        <a routerLink="{{ '/search?d' + flight.destination }}">Flights</a>
+        <a routerLink="/list">Flights</a>
       </li>
       <li class="breadcrumb-item active" aria-current="page">
         {{ flight.destination }}({{ flight.flightNumber }})
       </li>
     </ol>
   </nav>
-  <pre>{{ flight | json }}</pre>
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-8">
+        <img
+          src="{{ webService.getDestinationImage(flight.destination) }}"
+          class="img-fluid rounded-start"
+          alt="{{ flight.destination }}"
+        />
+      </div>
+      <div class="col-md-4">
+        <div class="card-body">
+          <h3 class="card-title">{{ flight.destination }}</h3>
+          <p class="card-text">
+            <small class="text-muted">{{ flight.flightKey }}</small>
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <strong>Flight Number</strong>{{ flight.flightNumber }}
+          </li>
+          <li class="list-group-item">
+            <strong>Schadualed At</strong
+            >{{ webService.formatDate(flight.scheduledAt) }}
+          </li>
+          <li class="list-group-item">
+            <strong>Estimated At: </strong
+            >{{ webService.formatDate(flight.estimatedAt) }}
+          </li>
+          <li class="list-group-item">
+            <strong>Plain Model: </strong
+            >{{ webService.formatValue(flight.plane) }}
+          </li>
+          <li class="list-group-item">
+            <strong>Gate: </strong>{{ webService.formatValue(flight.gate) }}
+          </li>
+        </ul>
+        <div class="card-body">
+          <a routerLink="/home" class="btn btn-primary"
+            ><i class="fa-solid fa-house"></i>
+            Homepage
+          </a>
+          <button type="button" class="btn btn-success ms-2">
+            <i class="fa-regular fa-floppy-disk"></i>
+            Save to Favorites
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-100 mb-3">
+    <iframe
+      class="mx-auto"
+      height="360"
+      width="100%"
+      [src]="getMapUrl() | safe"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      id="gmaps"
+    ></iframe>
+  </div>
 </div>

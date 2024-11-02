@@ -12,7 +12,9 @@
             {{ flight.destination }}
           </h3>
           <p class="card-text">
-            {{ formatDate(flight.scheduledAt) }} ({{ flight.flightNumber }})
+            {{ webService.formatDate(flight.scheduledAt) }} ({{
+              flight.flightNumber
+            }})
           </p>
         </div>
 
