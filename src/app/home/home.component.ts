@@ -27,8 +27,9 @@ export class HomeComponent implements OnInit{
   public flights : PageModel<FlightModel> | undefined = undefined
 
   constructor(){
-    this.webService = new WebService()
+    this.webService = WebService.getInstance()
   }
+    
   ngOnInit(): void {
     this.webService.getRecommendedFlights().subscribe(res=>this.flights=res)
   }
