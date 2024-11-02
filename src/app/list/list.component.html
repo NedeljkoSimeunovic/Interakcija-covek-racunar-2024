@@ -60,29 +60,32 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col"><i class="fa-solid fa-hashtag"> Id</i></th>
+        <th scope="col"><i class="fa-solid fa-table"></i> Flight Number</th>
+        <th scope="col">
+          <i class="fa-solid fa-location-dot"></i> Destination
+        </th>
+        <th scope="col">
+          <i class="fa-solid fa-calendar-days"></i> Scheduale At
+        </th>
+        <th scope="col"><i class="fa-regular fa-clock"></i> Estimated At</th>
+        <th scope="col"><i class="fa-solid fa-link"></i> Actionst</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>twitter</td>
+      <tr *ngFor="let flight of data.content">
+        <th scope="row">{{ flight.id }}</th>
+        <td>{{ flight.flightNumber }}</td>
+        <td>{{ flight.destination }}</td>
+        <td>{{ webService.formatDate(flight.scheduledAt) }}</td>
+        <td>{{ webService.formatDate(flight.estimatedAt) }}</td>
+        <td>
+          <div class="btn-group">
+            <a routerLink="/flight/{{ flight.id }}" class="btn btn-primary"
+              ><i class="fa-solid fa-up-right-from-square"></i> Details</a
+            >
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>

@@ -3,13 +3,13 @@ import { RouterLink } from '@angular/router';
 import { WebService } from '../web.service';
 import { FlightModel } from '../../models/fligt.model';
 import { PageModel } from '../../models/page.model';
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [RouterLink,NgIf, HttpClientModule],
+  imports: [RouterLink,NgIf, HttpClientModule, RouterLink, NgFor],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
@@ -20,6 +20,7 @@ export class ListComponent {
 
   constructor(){
     this.webService = WebService.getInstance()
+    this.getFlightDate()
   }
 
   public getFlightDate(page = 0){
