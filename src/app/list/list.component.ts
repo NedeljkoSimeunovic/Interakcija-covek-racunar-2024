@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [RouterLink,NgIf, HttpClientModule, RouterLink, NgFor],
+  imports: [ RouterLink, NgIf, HttpClientModule, RouterLink, NgFor ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
